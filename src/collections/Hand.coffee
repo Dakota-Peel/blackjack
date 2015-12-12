@@ -33,7 +33,9 @@ class window.Hand extends Backbone.Collection
       true
 
   stand: ->
-    @trigger("stand", @)
+    setTimeout(=>
+      @trigger("stand", @)
+     1000) 
 
   dealerStand: ->
     @at(0).flip()
@@ -46,10 +48,10 @@ class window.Hand extends Backbone.Collection
   checkBlackjack: ->
     console.log(@bestScore())
     if @bestScore() == 21
-      setTimeout(-> 
+      setTimeout(=> 
         alert "Blackjack! Winner Winner Chicken Dinner"
-        @trigger("newGame", @)
-        , 200)
+        @trigger("newGame",@)
+       1000)
 
      
 
