@@ -46,12 +46,9 @@ class window.Hand extends Backbone.Collection
       @hit()
 
   checkBlackjack: ->
-    console.log(@bestScore())
     if @bestScore() == 21
-      setTimeout(=> 
-        alert "Blackjack! Winner Winner Chicken Dinner"
-        @trigger("newGame",@)
-       1000)
+      console.log("Blackjack!")
+      @trigger("blackjack",@)
 
      
 

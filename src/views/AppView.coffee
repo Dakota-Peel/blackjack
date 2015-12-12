@@ -3,6 +3,7 @@ class window.AppView extends Backbone.View
     <button class="hit-button">Hit</button> <button class="stand-button">Stand</button>
     <div class="player-hand-container"></div>
     <div class="dealer-hand-container"></div>
+    <div class="bet-container"></div>
   '
 
   events:
@@ -11,8 +12,8 @@ class window.AppView extends Backbone.View
 
   initialize: ->
     @render()
-    @model.get('playerHand').checkBlackjack()
     @model.on("newGame", @render, @)
+    # @model.get('playerHand').checkBlackjack()
 
 
   render: ->
@@ -20,4 +21,5 @@ class window.AppView extends Backbone.View
     @$el.html @template()
     @$('.player-hand-container').html new HandView(collection: @model.get 'playerHand').el
     @$('.dealer-hand-container').html new HandView(collection: @model.get 'dealerHand').el
+    @$('.bet-container').html new BetView(model: @model.get 'bet').el
 

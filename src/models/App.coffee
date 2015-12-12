@@ -3,9 +3,20 @@
 class window.App extends Backbone.Model
   initialize: ->
     @set 'deck', deck = new Deck()
+    @set 'bet', bet = new BetModel({startingChips: 2000, startingBet: 100})
     @newGame()
 
- 
+  handleBlackjack: ->
+    bet = @get('bet')
+    setTimeout(=>
+      alert 'Blackjack! Winner Winner Chicken Dinner!'
+      bet.add(150)
+    300)
+    setTimeout(=>
+      @newGame()
+    1000)
+
+
   handleBust: ->
     alert "You Busted. Dealer Wins." 
     @newGame()
@@ -13,6 +24,7 @@ class window.App extends Backbone.Model
   endGame: ->
     playerHand = @get('playerHand')
     dealerHand = @get('dealerHand')
+    bet = @get('bet')
     playerScore = playerHand.bestScore()
     dealerHand.dealerStand()
 
@@ -20,10 +32,13 @@ class window.App extends Backbone.Model
       dealerScore = dealerHand.bestScore()
       if dealerHand.checkBust() is true
         alert 'Dealer Busted. Player Wins.'
+        bet.add(100)
       else if playerScore < dealerScore
         alert 'Dealer Wins.'
+        bet.remove(100)
       else if playerScore > dealerScore
         alert 'Player Wins.'
+        bet.add(100)
       else 
         alert 'You Push.'
     300)
@@ -39,4 +54,6 @@ class window.App extends Backbone.Model
     @set 'dealerHand', deck.dealDealer()
     @listenTo(@get('playerHand'), 'stand', @endGame)
     @listenTo(@get('playerHand'), 'bust', @handleBust)
+    @listenTo(@get('playerHand'), 'blackjack', @handleBlackjack)
     @trigger("newGame")
+    @get('playerHand').checkBlackjack();
