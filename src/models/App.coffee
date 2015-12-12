@@ -3,15 +3,12 @@
 class window.App extends Backbone.Model
   initialize: ->
     @set 'deck', deck = new Deck()
-    @set 'playerHand', deck.dealPlayer()
-    
-    @set 'dealerHand', deck.dealDealer()
-    @listenTo(@get('playerHand'), 'stand', @endGame)
-    @listenTo(@get('playerHand'), 'bust', @handleBust)
+    @newGame()
 
  
   handleBust: ->
     alert "You Busted. Dealer Wins." 
+    @newGame()
 
   endGame: ->
     playerHand = @get('playerHand')
@@ -28,3 +25,14 @@ class window.App extends Backbone.Model
       alert 'Player Wins.'
     else 
       alert 'You Push.'
+
+    @newGame()
+
+  newGame: -> 
+    console.log "Reset"
+    deck = @get 'deck'
+    @set 'playerHand', deck.dealPlayer()
+    @set 'dealerHand', deck.dealDealer()
+    @listenTo(@get('playerHand'), 'stand', @endGame)
+    @listenTo(@get('playerHand'), 'bust', @handleBust)
+    @trigger("newGame")
