@@ -41,7 +41,7 @@ class window.Hand extends Backbone.Collection
     @at(0).flip()
     @hit() while @bestScore() < 17
     #Dealer Hits on Soft 17
-    if @minScore == 17
+    if @minScore == 7
       console.log "Soft 17. Hit again"
       @hit()
 
