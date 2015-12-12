@@ -37,7 +37,17 @@ class window.Hand extends Backbone.Collection
 
   dealerStand: ->
     @at(0).flip()
-    @hit() while @bestScore() < 17 
+    @hit() while @bestScore() < 17
+    #Dealer Hits on Soft 17
+    if @minScore == 17
+      console.log "Soft 17. Hit again"
+      @hit()
+
+  checkBlackjack: ->
+    console.log(@bestScore())
+    if @bestScore() == 21
+      setTimeout(-> alert "Blackjack! Winner Winner Chicken Dinner", 2000)
+     
 
 
 

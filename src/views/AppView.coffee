@@ -11,6 +11,7 @@ class window.AppView extends Backbone.View
 
   initialize: ->
     @render()
+    @model.get('playerHand').checkBlackjack()
 
   render: ->
     @$el.children().detach()
