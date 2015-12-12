@@ -27,3 +27,6 @@ class window.BetModel extends Backbone.Model
     else
       newBet = currentBet - value
     @set('currentBet', newBet)
+
+  getBetSize: ->
+    return @get('currentBet')

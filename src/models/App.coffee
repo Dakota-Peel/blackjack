@@ -8,9 +8,10 @@ class window.App extends Backbone.Model
 
   handleBlackjack: ->
     bet = @get('bet')
+    betSize = bet.getBetSize()
     setTimeout(=>
       alert 'Blackjack! Winner Winner Chicken Dinner!'
-      bet.add(150)
+      bet.add(betSize * 1.5)
     300)
     setTimeout(=>
       @newGame()
@@ -27,18 +28,19 @@ class window.App extends Backbone.Model
     bet = @get('bet')
     playerScore = playerHand.bestScore()
     dealerHand.dealerStand()
+    betSize = bet.getBetSize()
 
     setTimeout(=>
       dealerScore = dealerHand.bestScore()
       if dealerHand.checkBust() is true
         alert 'Dealer Busted. Player Wins.'
-        bet.add(100)
+        bet.add(betSize)
       else if playerScore < dealerScore
         alert 'Dealer Wins.'
-        bet.remove(100)
+        bet.remove(betSize)
       else if playerScore > dealerScore
         alert 'Player Wins.'
-        bet.add(100)
+        bet.add(betSize)
       else 
         alert 'You Push.'
     300)

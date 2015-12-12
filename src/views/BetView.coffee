@@ -3,7 +3,7 @@ class window.BetView extends Backbone.View
 
   template: _.template '<table>
                         <tr><td>Bank</td><td><button class="add-button">Add</button></td><td>Current Bet</td></tr>
-                        <tr><td>$<%= chips %></td><td><button class="subtract-button">Subtract</button></td><td><%= currentBet %></td></tr>
+                        <tr><td>$<%= chips %></td><td><button class="subtract-button">Subtract</button></td><td>$<%= currentBet %></td></tr>
                         </table>'
 
 
