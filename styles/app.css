@@ -13,4 +13,6 @@
 
 .hand {
   overflow: auto;
+  float: center;
+  margin: auto;
 }
