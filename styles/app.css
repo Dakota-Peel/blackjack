@@ -50,3 +50,8 @@ table{
   vertical-align: middle;
   text-align: center;
 }
+
+.cardsleft {
+  color: white;
+  font-size: 25px;
+}

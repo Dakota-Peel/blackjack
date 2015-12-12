@@ -56,7 +56,6 @@ class window.App extends Backbone.Model
     1000)
 
   newGame: -> 
-    console.log "Reset"
     deck = @get 'deck'
     @set 'playerHand', deck.dealPlayer()
     @set 'dealerHand', deck.dealDealer()
@@ -65,4 +64,5 @@ class window.App extends Backbone.Model
     @listenTo(@get('playerHand'), 'blackjack', @handleBlackjack)
     @listenTo(@get('playerHand'), 'doubleDown', @handledoubleDown)
     @trigger("newGame")
-    @get('playerHand').checkBlackjack();
+    @get('playerHand').checkBlackjack()
+
