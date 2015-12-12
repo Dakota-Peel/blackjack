@@ -1,14 +1,22 @@
 class window.AppView extends Backbone.View
   template: _.template '
     <button class="hit-button">Hit</button> <button class="stand-button">Stand</button>
+    <button class="double-down-button">Double Down</button>
+    <button class="split-button">Split</button>
     <div class="player-hand-container"></div>
     <div class="dealer-hand-container"></div>
     <div class="bet-container"></div>
   '
 
   events:
-    'click .hit-button': -> @model.get('playerHand').hit()
+    'click .hit-button': -> 
+      @model.get('playerHand').hit()
+      # $('.double-down-button').hide()
+      # $('.split-button').hide()
     'click .stand-button': -> @model.get('playerHand').stand()
+    'click .double-down-button': ->@model.get('playerHand').doubleDown();
+
+
 
   initialize: ->
     @render()

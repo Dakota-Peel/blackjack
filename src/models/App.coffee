@@ -22,6 +22,12 @@ class window.App extends Backbone.Model
     alert "You Busted. Dealer Wins." 
     @newGame()
 
+  handledoubleDown: ->
+    bet = @get('bet')
+    betSize = bet.getBetSize()
+    bet.addBet(betSize);
+
+
   endGame: ->
     playerHand = @get('playerHand')
     dealerHand = @get('dealerHand')
@@ -57,5 +63,6 @@ class window.App extends Backbone.Model
     @listenTo(@get('playerHand'), 'stand', @endGame)
     @listenTo(@get('playerHand'), 'bust', @handleBust)
     @listenTo(@get('playerHand'), 'blackjack', @handleBlackjack)
+    @listenTo(@get('playerHand'), 'doubleDown', @handledoubleDown)
     @trigger("newGame")
     @get('playerHand').checkBlackjack();

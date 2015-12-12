@@ -15,7 +15,11 @@ class window.BetView extends Backbone.View
       @model.subtractBet(50)
       @render()
 
-  initialize: -> @render()
+  initialize: -> 
+    @render()
+    @model.on("change", =>
+        @render()
+      )
 
   render: ->
     @$el.html @template @model.attributes

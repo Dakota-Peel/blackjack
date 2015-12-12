@@ -50,6 +50,12 @@ class window.Hand extends Backbone.Collection
       console.log("Blackjack!")
       @trigger("blackjack",@)
 
+  doubleDown: ->
+    if @length == 2
+      @trigger("doubleDown", @);
+      @hit()
+      @stand()
+
      
 
 
