@@ -52,9 +52,10 @@ class window.Hand extends Backbone.Collection
 
   doubleDown: ->
     if @length == 2
-      @trigger("doubleDown", @);
+      @trigger("doubleDown", @)
       @hit()
-      @stand()
+      if !@checkBust()
+        @stand()
 
      
 
